@@ -10,7 +10,6 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { CopyIcon, Pencil1Icon, CheckIcon } from '@radix-ui/react-icons';
 
 interface WarpObjectModalProps {
