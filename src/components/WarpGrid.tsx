@@ -6,7 +6,11 @@ import { Badge } from '@/components/ui/badge';
 import WarpObjectModal from './WarpObjectModal';
 import CategoryFilter, { TemplateCategory, categories } from './CategoryFilter';
 
-const WarpGrid = () => {
+interface WarpGridProps {
+  searchQuery?: string;
+}
+
+const WarpGrid: React.FC<WarpGridProps> = ({ searchQuery = '' }) => {
   const [selectedObject, setSelectedObject] = useState<{
     id: number;
     title: string;
@@ -1002,14 +1006,40 @@ You are a comprehensive food and nutrition research assistant who combines nutri
     setSelectedObject(null);
   };
 
-  // Filter templates based on active category
-  const filteredObjects = warpObjects.filter(obj => 
-    activeCategory === 'all' || obj.category === activeCategory
-  );
-
+  // Helper function to get category info
   const getCategoryInfo = (categoryId: TemplateCategory) => {
     return categories.find(cat => cat.id === categoryId);
   };
+
+  // Comprehensive search function
+  const searchInTemplate = (template: typeof warpObjects[0], query: string): boolean => {
+    if (!query.trim()) return true;
+    
+    const searchTerm = query.toLowerCase();
+    
+    // Search in title
+    if (template.title.toLowerCase().includes(searchTerm)) return true;
+    
+    // Search in description
+    if (template.description.toLowerCase().includes(searchTerm)) return true;
+    
+    // Search in content (limit to first 1000 characters for performance)
+    const contentPreview = template.content.substring(0, 1000).toLowerCase();
+    if (contentPreview.includes(searchTerm)) return true;
+    
+    // Search in category name
+    const categoryInfo = getCategoryInfo(template.category);
+    if (categoryInfo?.name.toLowerCase().includes(searchTerm)) return true;
+    
+    return false;
+  };
+
+  // Filter templates based on category and search query
+  const filteredObjects = warpObjects.filter(obj => {
+    const matchesCategory = activeCategory === 'all' || obj.category === activeCategory;
+    const matchesSearch = searchInTemplate(obj, searchQuery);
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <section id="templates-section" className="py-12 px-4">
@@ -1020,6 +1050,23 @@ You are a comprehensive food and nutrition research assistant who combines nutri
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
         />
+        
+        {/* Search Results Indicator */}
+        {searchQuery.trim() && (
+          <div className="mb-6 text-center">
+            <div className="bg-blue-50 dark:bg-blue-950 rounded-lg p-4 max-w-md mx-auto">
+              <div className="flex items-center justify-center space-x-2 mb-2">
+                <span className="text-xl">🔍</span>
+                <h4 className="font-semibold">
+                  Search Results for &quot;{searchQuery}&quot;
+                </h4>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Found {filteredObjects.length} template{filteredObjects.length !== 1 ? 's' : ''} matching your search
+              </p>
+            </div>
+          </div>
+        )}
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredObjects.map((item) => {
@@ -1056,11 +1103,28 @@ You are a comprehensive food and nutrition research assistant who combines nutri
         
         {filteredObjects.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-xl font-semibold mb-2">No templates found</h3>
-            <p className="text-muted-foreground">
-              No templates match the selected category. Try selecting a different category.
+            <div className="text-6xl mb-4">
+              {searchQuery.trim() ? '🔍' : '📁'}
+            </div>
+            <h3 className="text-xl font-semibold mb-2">
+              {searchQuery.trim() ? 'No search results found' : 'No templates in this category'}
+            </h3>
+            <p className="text-muted-foreground mb-4">
+              {searchQuery.trim() 
+                ? `No templates match your search for "${searchQuery}". Try different keywords or browse by category.`
+                : `No templates match the selected category. Try selecting a different category.`
+              }
             </p>
+            {searchQuery.trim() && (
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p><strong>Search tips:</strong></p>
+                <ul className="list-none space-y-1">
+                  <li>• Try broader terms like &quot;health&quot; or &quot;fitness&quot;</li>
+                  <li>• Check spelling and try synonyms</li>
+                  <li>• Browse categories above to discover templates</li>
+                </ul>
+              </div>
+            )}
           </div>
         )}
       </div>

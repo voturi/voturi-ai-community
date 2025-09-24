@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { PlayIcon, ArrowDownIcon } from 'lucide-react';
 import TutorialModal from './TutorialModal';
 
-const Hero = () => {
+const Hero: React.FC = () => {
   const [isTutorialOpen, setIsTutorialOpen] = useState(false);
 
   return (
