@@ -1,14 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { SearchIcon, SunIcon, MoonIcon, FilterIcon, TerminalIcon } from 'lucide-react';
+import { SearchIcon, SunIcon, MoonIcon, FilterIcon, TerminalIcon, HelpCircle } from 'lucide-react';
 import { WarpDriveObject } from '@/types';
+import TutorialModal from './TutorialModal';
 
 interface HeaderProps {
   onSearch?: (query: string) => void;
@@ -25,6 +26,18 @@ export default function Header({
 }: HeaderProps) {
   const { theme, setTheme } = useTheme();
   const [localSearch, setLocalSearch] = useState(searchQuery);
+  const [isTutorialOpen, setIsTutorialOpen] = useState(false);
+
+  useEffect(() => {
+    // Show tutorial for first-time visitors
+    const hasSeenTutorial = localStorage.getItem('hasSeenTutorial');
+    if (!hasSeenTutorial) {
+      setTimeout(() => {
+        setIsTutorialOpen(true);
+        localStorage.setItem('hasSeenTutorial', 'true');
+      }, 1500);
+    }
+  }, []);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -114,6 +127,27 @@ export default function Header({
             </Button>
           )}
 
+          {/* How to Use Button */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setIsTutorialOpen(true)}
+            className="hidden sm:flex items-center space-x-2"
+          >
+            <HelpCircle className="h-4 w-4" />
+            <span>How to Use</span>
+          </Button>
+
+          {/* Mobile How to Use Button */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setIsTutorialOpen(true)}
+            className="sm:hidden"
+          >
+            <HelpCircle className="h-4 w-4" />
+          </Button>
+
           {/* Theme Toggle */}
           <Button
             variant="ghost"
@@ -126,6 +160,12 @@ export default function Header({
           </Button>
         </div>
       </div>
+      
+      {/* Tutorial Modal */}
+      <TutorialModal 
+        isOpen={isTutorialOpen} 
+        onClose={() => setIsTutorialOpen(false)} 
+      />
     </header>
   );
 }
