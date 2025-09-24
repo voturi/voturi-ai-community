@@ -40,7 +40,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isOpen, onClose }) => {
             Learn how to supercharge your AI conversations with professional prompt templates.
           </p>
           <div className="bg-blue-50 dark:bg-blue-950 p-4 rounded-lg">
-            <h4 className="font-semibold mb-2">What you'll learn:</h4>
+            <h4 className="font-semibold mb-2">What you&apos;ll learn:</h4>
             <ul className="space-y-1 text-sm">
               <li>✅ How to copy and use prompt templates</li>
               <li>✅ See real examples of before/after conversations</li>
@@ -91,7 +91,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isOpen, onClose }) => {
       content: (
         <div className="space-y-4">
           <p>
-            Once the modal opens, you'll see the complete prompt template. Click the "Copy" button to copy it to your clipboard.
+            Once the modal opens, you&apos;ll see the complete prompt template. Click the &quot;Copy&quot; button to copy it to your clipboard.
           </p>
           <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg">
             <div className="flex justify-between items-center mb-3">
@@ -132,7 +132,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isOpen, onClose }) => {
       content: (
         <div className="space-y-4">
           <p>
-            Now paste the template into any AI chat platform. Here's how it works:
+            Now paste the template into any AI chat platform. Here&apos;s how it works:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-red-50 dark:bg-red-950 p-4 rounded-lg">
@@ -140,7 +140,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isOpen, onClose }) => {
               <div className="bg-white dark:bg-gray-800 p-3 rounded text-sm">
                 <div className="font-medium mb-1">User:</div>
                 <div className="text-gray-600 dark:text-gray-400">
-                  "Help me with morning routines"
+                  &quot;Help me with morning routines&quot;
                 </div>
                 <div className="font-medium mt-2 mb-1">AI:</div>
                 <div className="text-gray-600 dark:text-gray-400 text-xs">
@@ -153,7 +153,7 @@ const TutorialModal: React.FC<TutorialModalProps> = ({ isOpen, onClose }) => {
               <div className="bg-white dark:bg-gray-800 p-3 rounded text-sm">
                 <div className="font-medium mb-1">User:</div>
                 <div className="text-gray-600 dark:text-gray-400 text-xs">
-                  [Pastes full template] + "Help me explore morning routines for busy parents"
+                  [Pastes full template] + &quot;Help me explore morning routines for busy parents&quot;
                 </div>
                 <div className="font-medium mt-2 mb-1">AI:</div>
                 <div className="text-gray-600 dark:text-gray-400 text-xs">
