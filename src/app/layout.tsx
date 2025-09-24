@@ -16,11 +16,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Warp Community - Discover and Share Warp Prompts",
-  description: "Explore community-driven collection of Warp prompts, notebooks, workflows, and folders. Join the Warp community and discover powerful terminal enhancements.",
-  keywords: ["Warp", "terminal", "prompts", "workflows", "AI", "productivity"],
+  title: "Voturi - Professional AI Prompt Templates",
+  description: "Transform your AI conversations with expert-crafted prompt templates for health, fitness, nutrition, daily life, and technical topics. Created by Praveen Voturi.",
+  keywords: ["AI prompts", "prompt templates", "ChatGPT", "Claude", "health", "fitness", "nutrition", "productivity", "Voturi"],
   authors: [{ name: "Praveen Voturi" }],
   robots: "index, follow",
+  openGraph: {
+    title: "Voturi - Professional AI Prompt Templates",
+    description: "Transform your AI conversations with expert-crafted prompt templates for health, fitness, nutrition, and daily life topics.",
+    url: "https://voturi-ai-community.vercel.app",
+    siteName: "Voturi",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Voturi - Professional AI Prompt Templates",
+    description: "Transform your AI conversations with expert-crafted prompt templates for health, fitness, nutrition, and daily life topics.",
+    creator: "@PraveenVoturi",
+  },
 };
 
 export const viewport = {

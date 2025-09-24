@@ -8,14 +8,14 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { SearchIcon, SunIcon, MoonIcon, FilterIcon, TerminalIcon, HelpCircle } from 'lucide-react';
-import { WarpDriveObject } from '@/types';
+import { PromptTemplate } from '@/types';
 import TutorialModal from './TutorialModal';
 
 interface HeaderProps {
   onSearch?: (query: string) => void;
-  onFilterChange?: (filters: { type?: WarpDriveObject['type']; tags?: string[] }) => void;
+  onFilterChange?: (filters: { type?: PromptTemplate['type']; tags?: string[] }) => void;
   searchQuery?: string;
-  activeFilters?: { type?: WarpDriveObject['type']; tags?: string[] };
+  activeFilters?: { type?: PromptTemplate['type']; tags?: string[] };
 }
 
 export default function Header({ 
@@ -45,7 +45,7 @@ export default function Header({
     onSearch?.(value);
   };
 
-  const handleTypeFilter = (type: WarpDriveObject['type'] | undefined) => {
+  const handleTypeFilter = (type: PromptTemplate['type'] | undefined) => {
     onFilterChange?.({ ...activeFilters, type });
   };
 
@@ -68,7 +68,7 @@ export default function Header({
         {/* Logo and Brand */}
         <Link href="/" className="flex items-center space-x-2">
           <TerminalIcon className="h-6 w-6" />
-          <span className="text-xl font-bold">Praveen Voturi</span>
+          <span className="text-xl font-bold">Voturi</span>
         </Link>
 
         {/* Search Bar */}
@@ -77,11 +77,11 @@ export default function Header({
             <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search prompts, workflows, notebooks..."
+              placeholder="Search prompt templates..."
               value={localSearch}
               onChange={handleSearchChange}
               className="pl-10 pr-4"
-              aria-label="Search Warp Drive objects"
+              aria-label="Search prompt templates"
             />
           </div>
         </div>

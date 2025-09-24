@@ -1,10 +1,10 @@
-export interface WarpDriveObject {
+export interface PromptTemplate {
   id: string;
   title: string;
   description: string;
   type: 'prompt' | 'notebook' | 'workflow' | 'folder';
   tags: string[];
-  warpDriveUrl: string;
+  templateUrl?: string;
   attribution: {
     author: string;
     authorUrl?: string;
@@ -17,11 +17,11 @@ export interface WarpDriveObject {
 
 export interface SearchFilters {
   query: string;
-  type?: WarpDriveObject['type'];
+  type?: PromptTemplate['type'];
   tags?: string[];
 }
 
-export interface WarpStats {
+export interface VoturiStats {
   totalPrompts: number;
   totalNotebooks: number;
   totalWorkflows: number;

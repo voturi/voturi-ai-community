@@ -1,49 +1,46 @@
-# Warp Community Project
+# Voturi - Professional AI Prompt Templates
 
-## Feature Summary
+> Transform your AI conversations with expert-crafted prompt templates for health, fitness, nutrition, daily life, and technical topics.
 
-### What's been implemented:
-1. **Clickable Cards**: All cards in the WarpGrid are now clickable with hover effects
-2. **Modal Dialog**: When you click on 'Sample Warp Object 1' (or any card), it opens a modal popup
-3. **Copy Functionality**: A "Copy" button that copies the content to clipboard with visual feedback
-4. **Edit Functionality**: An "Edit" button that allows you to modify the content inline
-5. **Close Functionality**: A "Close" button and overlay click to close the modal
+## 🌟 Features
 
-## Key Features
+### **Professional Prompt Templates**
+- **6 Expert-Crafted Templates**: Context Engineering Master, Codebase Analysis, Daily Life Explorer, Health Research, Fitness Planning, and Food & Nutrition Guide
+- **Multi-Expert Perspectives**: Each template incorporates insights from multiple professional viewpoints
+- **Evidence-Based Methodology**: Systematic approaches with clear frameworks and quality standards
+- **Universal Compatibility**: Works with ChatGPT, Claude, Gemini, and any AI chat platform
 
-### Interactive Cards:
-- Hover effects with scale animation
-- Cursor pointer to indicate clickability
-- Clear call-to-action text
+### **Interactive Tutorial System**
+- **6-Step Walkthrough**: Complete guide on how to use prompt templates effectively
+- **Before/After Examples**: Visual comparisons showing the power of structured prompts
+- **Auto-Launch for New Users**: First-time visitor onboarding with localStorage tracking
+- **Multiple Access Points**: "How to Use" in header and "Get Started" in hero section
+- **Mobile-Responsive Design**: Works perfectly on all devices
 
-### Modal Dialog:
-- Clean, responsive design using Radix UI primitives
-- Shows title, description, and content
-- Proper accessibility with focus management
-- Backdrop blur effect
+### **User Experience**
+- **One-Click Copy**: Easy template copying with visual feedback
+- **Responsive Modal Design**: Scrollable content with fixed headers/footers
+- **Clean Interface**: Professional design focused on usability
+- **Smooth Navigation**: Scroll-to-section and intuitive user flow
 
-### Copy & Edit:
-- **Copy Button**: Copies content to clipboard with "Copied!" feedback
-- **Edit Button**: Toggles between view and edit modes
-- **Save Button**: Saves changes when in edit mode
-- **Content Area**: Read-only view or editable textarea
+### **Template Categories**
+1. **Technical**: Context Engineering Master, Codebase Analysis & Documentation
+2. **Health & Wellness**: Health Research Assistant, Fitness Research & Planning
+3. **Lifestyle**: Daily Life Topic Explorer, Food & Nutrition Research Guide
 
-### Sample Content:
-- Warp prompts with command examples
-- Development setup scripts
-- Git workflow commands
-- Markdown formatting support
+## 🚀 How It Works
 
-## How to Test
+1. **Browse Templates**: Choose from professionally crafted prompt templates
+2. **Copy Content**: One-click copy of complete template (500-2000 words)
+3. **Paste in AI**: Use with any AI platform (ChatGPT, Claude, etc.)
+4. **Get Expert Results**: Receive structured, comprehensive responses
 
-1. Visit `http://localhost:3000`
-2. Click on any of the "Sample Warp Object" cards
-3. Try the Copy button - it will copy to your clipboard
-4. Try the Edit button - you can modify the content
-5. Click Save to save your changes
-6. Close the modal with the Close button or by clicking outside
+## 🎯 Why Use Voturi Templates?
 
-The feature is now fully functional and ready to use! You can easily extend this by connecting it to a real data source or adding more functionality like saving to a backend API.
+- **Expert Perspective**: AI acts as a specialist in specific fields
+- **Structured Output**: Organized, comprehensive responses every time
+- **Multi-Angle Analysis**: Considers different viewpoints and approaches
+- **Actionable Advice**: Practical steps you can implement immediately
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
