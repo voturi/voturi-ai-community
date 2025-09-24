@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import WarpObjectModal from './WarpObjectModal';
+import CategoryFilter, { TemplateCategory, categories } from './CategoryFilter';
 
 const WarpGrid = () => {
   const [selectedObject, setSelectedObject] = useState<{
@@ -10,8 +12,10 @@ const WarpGrid = () => {
     title: string;
     description: string;
     content: string;
+    category: TemplateCategory;
   } | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<TemplateCategory>('all');
 
   // Professional prompt templates for AI collaboration
   const warpObjects = [
@@ -19,6 +23,7 @@ const WarpGrid = () => {
       id: 1,
       title: 'Context Engineering Master',
       description: 'Create AI-optimized documentation and memory systems for better collaboration',
+      category: 'engineering' as TemplateCategory,
       content: `# Context Engineering Master
 
 ## Mission Statement
@@ -199,6 +204,7 @@ Positive and negative outcomes of this decision.
       id: 2,
       title: 'Codebase Analysis & Documentation Assistant',
       description: 'Expert codebase analysis with multi-chat workflow and progress tracking',
+      category: 'engineering' as TemplateCategory,
       content: `# Codebase Analysis & Documentation Assistant
 
 ## Mission Statement
@@ -325,6 +331,7 @@ Once configured, start each analysis cycle with:
       id: 3,
       title: 'Daily Life Topic Explorer',
       description: 'Explore everyday topics with balanced perspectives and practical insights',
+      category: 'lifestyle' as TemplateCategory,
       content: `# Daily Life Topic Explorer
 
 ## Mission Statement
@@ -425,6 +432,7 @@ You are a thoughtful life advisor who helps people explore everyday topics with 
       id: 4,
       title: 'Health Research Assistant',
       description: 'Research health topics with evidence-based information and multiple expert perspectives',
+      category: 'health' as TemplateCategory,
       content: `# Health Research Assistant
 
 ## Mission Statement
@@ -585,6 +593,7 @@ You are a knowledgeable health research assistant who helps people understand he
       id: 5,
       title: 'Fitness Research & Planning Assistant',
       description: 'Research fitness topics and create personalized exercise plans based on science and expert knowledge',
+      category: 'fitness' as TemplateCategory,
       content: `# Fitness Research & Planning Assistant
 
 ## Mission Statement
@@ -778,6 +787,7 @@ You are an expert fitness research assistant who combines exercise science, mult
       id: 6,
       title: 'Food & Nutrition Research Guide',
       description: 'Research food topics with nutritional science, culinary expertise, and practical meal planning',
+      category: 'nutrition' as TemplateCategory,
       content: `# Food & Nutrition Research Guide
 
 ## Mission Statement
@@ -992,31 +1002,67 @@ You are a comprehensive food and nutrition research assistant who combines nutri
     setSelectedObject(null);
   };
 
+  // Filter templates based on active category
+  const filteredObjects = warpObjects.filter(obj => 
+    activeCategory === 'all' || obj.category === activeCategory
+  );
+
+  const getCategoryInfo = (categoryId: TemplateCategory) => {
+    return categories.find(cat => cat.id === categoryId);
+  };
+
   return (
     <section id="templates-section" className="py-12 px-4">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold mb-8 text-center">Discover Prompt Templates</h2>
+        
+        <CategoryFilter 
+          activeCategory={activeCategory}
+          onCategoryChange={setActiveCategory}
+        />
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {warpObjects.map((item) => (
-            <Card 
-              key={item.id} 
-              className="hover:shadow-lg transition-shadow cursor-pointer hover:scale-105 transform transition-transform duration-200"
-              onClick={() => handleCardClick(item)}
-            >
-              <CardHeader>
-                <CardTitle>{item.title}</CardTitle>
-                <CardDescription>
-                  {item.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Click to view and copy this prompt template
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+          {filteredObjects.map((item) => {
+            const categoryInfo = getCategoryInfo(item.category);
+            return (
+              <Card 
+                key={item.id} 
+                className="hover:shadow-lg transition-shadow cursor-pointer hover:scale-105 transform transition-transform duration-200"
+                onClick={() => handleCardClick(item)}
+              >
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-2">
+                    <Badge 
+                      className={`text-xs ${categoryInfo?.color || 'bg-gray-100 text-gray-800'}`}
+                      variant="secondary"
+                    >
+                      {categoryInfo?.icon} {categoryInfo?.name}
+                    </Badge>
+                  </div>
+                  <CardTitle>{item.title}</CardTitle>
+                  <CardDescription>
+                    {item.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">
+                    Click to view and copy this prompt template
+                  </p>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
+        
+        {filteredObjects.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">🔍</div>
+            <h3 className="text-xl font-semibold mb-2">No templates found</h3>
+            <p className="text-muted-foreground">
+              No templates match the selected category. Try selecting a different category.
+            </p>
+          </div>
+        )}
       </div>
       
       {selectedObject && (
