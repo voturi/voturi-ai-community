@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "Warp Community - Discover and Share Warp Prompts",
   description: "Explore community-driven collection of Warp prompts, notebooks, workflows, and folders. Join the Warp community and discover powerful terminal enhancements.",
   keywords: ["Warp", "terminal", "prompts", "workflows", "AI", "productivity"],
-  authors: [{ name: "Warp Community" }],
+  authors: [{ name: "Praveen Voturi" }],
   robots: "index, follow",
 };
 

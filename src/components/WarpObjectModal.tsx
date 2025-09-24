@@ -58,14 +58,14 @@ const WarpObjectModal: React.FC<WarpObjectModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[600px]">
-        <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{description}</DialogDescription>
+      <DialogContent className="w-full max-w-4xl max-h-[90vh] flex flex-col">
+        <DialogHeader className="flex-shrink-0">
+          <DialogTitle className="text-xl font-semibold">{title}</DialogTitle>
+          <DialogDescription className="text-base">{description}</DialogDescription>
         </DialogHeader>
         
-        <div className="grid gap-4 py-4">
-          <div className="space-y-2">
+        <div className="flex-1 overflow-hidden py-4">
+          <div className="space-y-2 h-full">
             <label htmlFor="content" className="text-sm font-medium">
               Content
             </label>
@@ -74,18 +74,18 @@ const WarpObjectModal: React.FC<WarpObjectModalProps> = ({
                 id="content"
                 value={editedContent}
                 onChange={(e) => setEditedContent(e.target.value)}
-                className="w-full min-h-[200px] p-3 border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                className="w-full h-[60vh] p-3 border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 font-mono text-sm"
                 placeholder="Enter your Warp prompt content here..."
               />
             ) : (
-              <div className="w-full min-h-[200px] p-3 border rounded-md bg-muted/50 whitespace-pre-wrap">
+              <div className="w-full h-[60vh] p-3 border rounded-md bg-muted/50 whitespace-pre-wrap overflow-y-auto font-mono text-sm leading-relaxed">
                 {editedContent}
               </div>
             )}
           </div>
         </div>
 
-        <DialogFooter className="flex flex-col sm:flex-row gap-2">
+        <DialogFooter className="flex-shrink-0 flex flex-col sm:flex-row gap-2 border-t pt-4">
           <div className="flex gap-2">
             <Button
               variant="outline"
@@ -106,15 +106,18 @@ const WarpObjectModal: React.FC<WarpObjectModalProps> = ({
               )}
             </Button>
             
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={isEditing ? handleSave : handleEdit}
-              className="flex items-center gap-2"
-            >
-              <Pencil1Icon className="h-4 w-4" />
-              {isEditing ? 'Save' : 'Edit'}
-            </Button>
+            {/* Edit functionality hidden from users */}
+            {false && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={isEditing ? handleSave : handleEdit}
+                className="flex items-center gap-2"
+              >
+                <Pencil1Icon className="h-4 w-4" />
+                {isEditing ? 'Save' : 'Edit'}
+              </Button>
+            )}
           </div>
           
           <Button onClick={handleClose} variant="default">

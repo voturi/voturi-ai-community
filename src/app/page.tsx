@@ -5,11 +5,11 @@ import WarpGrid from '@/components/WarpGrid';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Warp Community - Discover and Share Warp Prompts',
-  description: 'Explore community-driven collection of Warp prompts and workflows.',
+  title: 'Prompt Galary - Discover and Share Warp Prompts',
+  description: 'Explore community-driven collection of customised  prompts and workflows.',
   openGraph: {
-    title: 'Warp Community - Discover and Share Warp Prompts',
-    description: 'Explore community-driven collection of Warp prompts and workflows.',
+    title: 'Prompt Galary - Discover and Share Warp Prompts',
+    description: 'Explore community-driven collection of standard prompts and workflows.',
   },
 };
 

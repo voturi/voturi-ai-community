@@ -55,7 +55,7 @@ export default function Header({
         {/* Logo and Brand */}
         <Link href="/" className="flex items-center space-x-2">
           <TerminalIcon className="h-6 w-6" />
-          <span className="text-xl font-bold">Warp Community</span>
+          <span className="text-xl font-bold">Praveen Voturi</span>
         </Link>
 
         {/* Search Bar */}
